@@ -177,3 +177,4 @@ cython_debug/
 .vscode
 .DS_Store
 mynotes/
+.env_udejose
