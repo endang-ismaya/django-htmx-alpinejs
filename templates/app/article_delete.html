@@ -6,4 +6,6 @@
     {% csrf_token %}
     <button type="submit">Delete</button>
   </form>
+
+  <a href="{% url 'app.home' %}">No, I changed up my mind!</a>
 {% endblock %}
