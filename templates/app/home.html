@@ -7,9 +7,15 @@
   </head>
   <body>
     <h1>Articles</h1>
+    <a href="{% url 'app.create_article' %}">Add New Article</a>
     <ul>
       {% for article in articles %}
-        <li>{{ article.title }}</li>
+        <li>
+          {{ article.title }}
+          <a href="{% url 'app.detail_article' article.id %}">👁️</a>
+          <a href="{% url 'app.update_article' article.id %}">📝</a>
+          <a href="{% url 'app.delete_article' article.id %}">🗑️</a>
+        </li>
       {% endfor %}
     </ul>
   </body>
