@@ -178,3 +178,4 @@ cython_debug/
 .DS_Store
 mynotes/
 .env_udejose
+resources/
