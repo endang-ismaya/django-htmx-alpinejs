@@ -1,0 +1,8 @@
+*.sqlite3
+*.pyc
+.DS_Store
+.venv
+.env_udejose
+mynotes
+resources
+.vscode
