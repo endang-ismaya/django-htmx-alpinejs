@@ -22,6 +22,11 @@ class ArticleCreateView(CreateView):
     fields = ["title", "status", "content", "twitter_post"]
     success_url = reverse_lazy("app.home")
 
+    def form_valid(self, form):
+        """Set/Insert creator during form_valid"""
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
+
 
 class ArticleUpdateView(UpdateView):
     template_name = "app/article_update.html"
