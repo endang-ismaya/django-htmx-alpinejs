@@ -5,7 +5,14 @@ from app.models import Article, UserProfile
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ["title", "word_count", "status", "created_at", "updated_at"]
+    list_display = [
+        "title",
+        "word_count",
+        "status",
+        "created_at",
+        "updated_at",
+        "creator__first_name",
+    ]
     list_filter = ("status",)
     search_fields = ("title", "content")
     date_hierarchy = "created_at"

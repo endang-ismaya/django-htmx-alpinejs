@@ -13,6 +13,8 @@ ARTICLE_STATUS = (
 
 class UserProfile(AbstractUser):
     pass
+    # def __str__(self):
+    #     return f"{self.first_name.capitalize()} {self.last_name.capitalize()}"
 
 
 class Article(models.Model):
