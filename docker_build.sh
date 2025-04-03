@@ -69,6 +69,9 @@ fi
 
 
 # create the container
-docker run -d -p 8000:8000 --name "$IMAGE_NAME" -e TARGET_CONTAINER=$IMAGE_NAME "$IMAGE_NAME:$new_version"
+docker run -d -p 8000:8000 --name "$IMAGE_NAME" -e TARGET_CONTAINER=$IMAGE_NAME -v $(pwd):/app "$IMAGE_NAME:$new_version"
 
 echo "Container $IMAGE_NAME has been created."
+
+# list docker
+docker ps
