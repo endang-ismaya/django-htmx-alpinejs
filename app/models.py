@@ -4,6 +4,8 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from app.managers import UserProfileManager
+
 ARTICLE_STATUS = (
     ("draft", "draft"),
     ("inprogress", "in progress"),
@@ -12,9 +14,10 @@ ARTICLE_STATUS = (
 
 
 class UserProfile(AbstractUser):
-    pass
-    # def __str__(self):
-    #     return f"{self.first_name.capitalize()} {self.last_name.capitalize()}"
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+    email = models.EmailField(max_length=255, unique=True)
+    objects = UserProfileManager()
 
 
 class Article(models.Model):
