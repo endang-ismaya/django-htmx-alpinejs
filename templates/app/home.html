@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% block content %}
   <h1>Articles</h1>
+
+  <p>You have created {{ user.article_count|intcomma }} article{{ user.article.count|pluralize }}
+    and written {{ user.written_words|intcomma }} word{{ user.written_words|pluralize }}</p>
+
   <a href="{% url 'app.create_article' %}">Add New Article</a>
   <ul>
     {% if articles %}
