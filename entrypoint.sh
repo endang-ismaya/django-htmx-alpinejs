@@ -3,9 +3,10 @@
 
 echo "TARGET_CONTAINER: $TARGET_CONTAINER"
 
-if [ "$TARGET_CONTAINER" = "ude_jose" ]; then
+if [ "$TARGET_CONTAINER" = "ude-jose-local" ]; then
 	# Collect static files
 	# python manage.py collectstatic --noinput
+	# sleep 10
 
 	# Apply migrations (if needed)
 	python manage.py migrate
