@@ -41,6 +41,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     context_object_name = "article"
 
     def test_func(self):
+        """Add condition to only the creator who can update the article"""
         return self.request.user == self.get_object().creator
 
 

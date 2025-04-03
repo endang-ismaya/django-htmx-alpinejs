@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # internal apps
     "app.apps.AppConfig",
+    # 3rd party apps
+    "allauth",
+    "allauth.account",
 ]
 
 MIDDLEWARE = [
@@ -49,6 +52,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "src.urls"
@@ -130,3 +134,9 @@ AUTH_USER_MODEL = "app.UserProfile"
 # REDIRECT
 LOGIN_REDIRECT_URL = "app.home"
 LOGOUT_REDIRECT_URL = "login"
+
+
+# BACKEND AUTH
+AUTHENTICATION_BACKENDS = [
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
