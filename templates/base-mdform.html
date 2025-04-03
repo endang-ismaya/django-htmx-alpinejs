@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% endblock %}
+
+{% block page_js %}
+  <script>
+    const easyMDE = new EasyMDE({ element: document.getElementById('id_content'), spellchecker: false })
+  </script>
+{% endblock %}

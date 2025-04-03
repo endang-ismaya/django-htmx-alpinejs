@@ -1,7 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'base-mdform.html' %}
 {% block content %}
   <h1>Create Article</h1>
-  <form method="POST">
+  <form method="POST" style="width: 590px;">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save</button>
