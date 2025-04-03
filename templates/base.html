@@ -13,12 +13,12 @@
         </li>
         <li>
           {% if user.is_authenticated %}
-            <form action="{% url 'logout' %}" method="POST">
+            <form action="{% url 'account_logout' %}" method="POST">
               {% csrf_token %}
               <button type="submit">Logout</button>
             </form>
           {% else %}
-            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'account_login' %}">Login</a>
           {% endif %}
         </li>
       </ul>

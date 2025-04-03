@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     # 3rd party apps
     "allauth",
     "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.github",
 ]
 
 MIDDLEWARE = [
@@ -133,7 +136,7 @@ AUTH_USER_MODEL = "app.UserProfile"
 
 # REDIRECT
 LOGIN_REDIRECT_URL = "app.home"
-LOGOUT_REDIRECT_URL = "login"
+LOGOUT_REDIRECT_URL = "account_login"
 
 
 # BACKEND AUTH
