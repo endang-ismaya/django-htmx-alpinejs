@@ -2,7 +2,7 @@
 @config "../../tailwind.config.js";
 
 .button {
-  @apply font-medium px-4 py-2 rounded-md;
+  @apply font-medium px-4 py-2 rounded-md cursor-pointer;
 }
 
 .primary {
@@ -26,5 +26,19 @@
 }
 
 @theme {
-  --shadow-underline: inset 0 -2px 0 0;
+  --shadow-underline: inset 0 -3px 0 0;
+}
+
+.EasyMDEContainer,
+textarea {
+  @apply rounded-md border-gray-200 border-2 text-base leading-6 mb-10;
+}
+
+.EasyMDEContainer .CodeMirror {
+  @apply !border-none !bg-inherit;
+}
+
+.EasyMDEContainer:has(textarea:focus),
+textarea:focus {
+  @apply ring-1 ring-emerald-500 border-emerald-500;
 }

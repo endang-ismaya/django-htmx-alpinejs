@@ -1,10 +1,7 @@
 {% extends 'base-mdform.html' %}
-{% block content %}
-  <h1>Create Article</h1>
-  <form method="POST" style="width: 590px;">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-  </form>
-  <a href="{% url 'app.home' %}">Back to Articles</a>
+{% block buttons %}
+  <div class="flex justify-between items-center">
+    <a href="{% url 'app.home' %}" class="hover:font-semibold hover:text-blue-400"><i data-lucide="arrow-left" class="inline-block mr-2 h-6 w-6 mt-[-2px] text-blue-500"></i>Back to Articles</a>
+    <button type="submit" class="button primary">Save</button>
+  </div>
 {% endblock %}
