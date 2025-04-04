@@ -2,3 +2,4 @@ Django
 django-allauth[socialaccount]
 psycopg
 dj-database-url
+django-widget-tweaks

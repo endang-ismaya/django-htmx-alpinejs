@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.github",
     "django_browser_reload",
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [

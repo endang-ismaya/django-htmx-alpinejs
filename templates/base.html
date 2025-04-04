@@ -12,21 +12,43 @@
   </head>
   <body>
     <nav class="px-10 py-4 border-b border-gray-300 shadow-md">
-      <ul>
-        <li>
-          <a href="{% url 'app.home' %}">Articles</a>
-        </li>
-        <li>
-          {% if user.is_authenticated %}
+      <div class="flex justify-end items-center gap-6">
+        {% if user.is_authenticated %}
+          {% comment %}Define your active class style once for easier changes{% endcomment %}
+          {% with active_class='font-extrabold' inactive_class='hover:shadow-underline hover:shadow-gray-300' %}
+            {# --- Create New Button Logic --- #}
+            {% if request.resolver_match.url_name == 'app.create_article' %}
+              {# DISABLED STATE: Render as non-clickable, visually distinct #}
+              {# Use <a> tag for style consistency, but no href + disabled classes/ARIA #}
+              <a class="button primary opacity-50 cursor-not-allowed" aria-disabled="true" role="link">Create new</a>
+            {% else %}
+              {# ENABLED STATE: Render as a normal clickable link #}
+              <a href="{% url 'app.create_article' %}" class="button primary">Create new</a>
+            {% endif %}
+            {# --- End Create New Button Logic --- #}
+
+            <a href="{% url 'app.home' %}"
+              class="{{ inactive_class }} {% if request.resolver_match.url_name == 'app.home' %}
+                {{ active_class }}
+              {% endif %}">
+              Articles
+            </a>
+            <a href="{% url 'account_email' %}"
+              class="{{ inactive_class }} {% if request.resolver_match.url_name == 'account_email' %}
+                {{ active_class }}
+              {% endif %}">
+              Change email
+            </a>
             <form action="{% url 'account_logout' %}" method="POST">
               {% csrf_token %}
-              <button type="submit">Logout</button>
+              <button type="submit" class="button secondary hover:undlerline">Logout</button>
             </form>
-          {% else %}
-            <a href="{% url 'account_login' %}">Login</a>
-          {% endif %}
-        </li>
-      </ul>
+          {% endwith %}
+        {% else %}
+          <a href="{% url 'account_login' %}" class="button secondary text-sm">Log in</a>
+          <a href="{% url 'singup' %}" class="button primary text-sm">Sign up</a>
+        {% endif %}
+      </div>
     </nav>
 
     {% block content %}
