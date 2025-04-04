@@ -179,3 +179,4 @@ cython_debug/
 mynotes/
 .env_udejose
 resources/
+node_modules

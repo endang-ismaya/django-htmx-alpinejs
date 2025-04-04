@@ -2,6 +2,12 @@
 
 
 echo "TARGET_CONTAINER: $TARGET_CONTAINER"
+echo "DEBUG: $DEBUG"
+
+if [ "$DEBUG" = "True" ]; then
+	# installing dev dependencies
+	pip install -r pkg.dev
+fi
 
 if [ "$TARGET_CONTAINER" = "ude-jose-local" ]; then
 	# Collect static files

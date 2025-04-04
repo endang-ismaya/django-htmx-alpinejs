@@ -8,4 +8,6 @@ urlpatterns = [
     path("articles/", include("app.urls")),
     # path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("allauth.urls")),
+    # development
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
