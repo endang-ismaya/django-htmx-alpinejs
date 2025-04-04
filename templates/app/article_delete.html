@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Delete Article</h1>
-  <p>Are you sure you want to delete "{{ article.title }}"</p>
-  <form method="POST">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-  </form>
+  <main class="max-w-2xl mx-auto flex flex-col items-center mt-10">
+    <h1 class="subtitle mb-6">Delete Article</h1>
+    <p class="mb-6">
+      Are you sure you want to delete <span class="text-xl font-semibold text-red-800">"{{ article.title }}"</span> ?
+    </p>
 
-  <a href="{% url 'app.home' %}">No, I changed up my mind!</a>
+    <div class="flex gap-6">
+      <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="button danger">Yes, Delete it!</button>
+      </form>
+      <a href="{% url 'app.home' %}" class="button secondary leading-6"><i data-lucide="arrow-left" class="inline-block mr-2 h-6 w-6 mt-[-2px] text-blue-500"></i>No, I changed up my mind!</a>
+    </div>
+  </main>
 {% endblock %}

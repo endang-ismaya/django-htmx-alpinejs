@@ -45,11 +45,9 @@
       </div>
     </nav>
 
-    <main class="flex-grow max-w-7xl px-4 sm:px-6 lg:px-8 mt-10 p-2 md:p-4 lg:p-6">
-      {% block content %}
+    {% block content %}
 
-      {% endblock %}
-    </main>
+    {% endblock %}
 
     <footer class="fixed bottom-0 w-full flex justify-center py-4 bg-gray-500 text-white font-semibold">
       <p>endang.ismaya@2025</p>
@@ -58,5 +56,10 @@
     {% block page_js %}
 
     {% endblock %}
+    <!-- Development version -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+      lucide.createIcons()
+    </script>
   </body>
 </html>
