@@ -10,22 +10,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
   </head>
-  <body>
+  <body class="min-h-screen flex flex-col">
     <nav class="px-10 py-4 border-b border-gray-300 shadow-md">
       <div class="flex justify-end items-center gap-6">
         {% if user.is_authenticated %}
-          {% comment %}Define your active class style once for easier changes{% endcomment %}
           {% with active_class='font-extrabold' inactive_class='hover:shadow-underline hover:shadow-gray-300' %}
-            {# --- Create New Button Logic --- #}
             {% if request.resolver_match.url_name == 'app.create_article' %}
-              {# DISABLED STATE: Render as non-clickable, visually distinct #}
-              {# Use <a> tag for style consistency, but no href + disabled classes/ARIA #}
               <a class="button primary opacity-50 cursor-not-allowed" aria-disabled="true" role="link">Create new</a>
             {% else %}
-              {# ENABLED STATE: Render as a normal clickable link #}
               <a href="{% url 'app.create_article' %}" class="button primary">Create new</a>
             {% endif %}
-            {# --- End Create New Button Logic --- #}
 
             <a href="{% url 'app.home' %}"
               class="{{ inactive_class }} {% if request.resolver_match.url_name == 'app.home' %}
@@ -41,7 +35,7 @@
             </a>
             <form action="{% url 'account_logout' %}" method="POST">
               {% csrf_token %}
-              <button type="submit" class="button secondary hover:undlerline">Logout</button>
+              <button type="submit" class="button secondary hover:underline">Logout</button>
             </form>
           {% endwith %}
         {% else %}
@@ -51,11 +45,15 @@
       </div>
     </nav>
 
-    {% block content %}
+    <main class="flex-grow max-w-7xl px-4 sm:px-6 lg:px-8 mt-10 p-2 md:p-4 lg:p-6">
+      {% block content %}
 
-    {% endblock %}
+      {% endblock %}
+    </main>
 
-    <footer>endang.ismaya@2025</footer>
+    <footer class="fixed bottom-0 w-full flex justify-center py-4 bg-gray-500 text-white font-semibold">
+      <p>endang.ismaya@2025</p>
+    </footer>
 
     {% block page_js %}
 
