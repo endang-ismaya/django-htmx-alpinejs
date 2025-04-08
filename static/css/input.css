@@ -50,3 +50,8 @@ textarea:focus {
 .error-form {
   @apply p-2 mt-10 text-sm text-red-700 bg-red-50 rounded-md border-red-300 border;
 }
+
+.details-with-icon[open] .icon-rotate {
+  transform: rotate(90deg);
+  transition: transform 0.2s ease-in-out; /* Optional: for smooth animation */
+}
