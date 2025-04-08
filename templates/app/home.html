@@ -21,7 +21,7 @@
           <li>
             <a href="{% url 'app.detail_article' article.id %}" class="text-2xl flex items-center">
               {{ article.title }}
-              <span class="text-xs rounded-sm uppercase bg-gray-200 px-4 py-0.5 ml-2">{{ article.status }}</span>
+              <span class="text-xs rounded-sm uppercase article-status-{{ article.status }} px-4 py-0.5 ml-2">{{ article.status }}</span>
             </a>
             <p class="text-sm">with {{ article.word_count }} word{{ article.word_count|pluralize }}.</p>
           </li>
