@@ -1,5 +1,9 @@
 {% extends 'base-mdform.html' %}
 
+{% block title %}
+  - Update Article
+{% endblock %}
+
 {% block article_stats %}
   <p class="text-center">{{ article.word_count }} word{{ article.word_count|pluralize }}</p>
   <p>

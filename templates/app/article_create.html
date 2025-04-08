@@ -1,4 +1,9 @@
 {% extends 'base-mdform.html' %}
+
+{% block title %}
+  - Article Creation
+{% endblock %}
+
 {% block buttons %}
   <div class="flex justify-between items-center">
     <a href="{% url 'app.home' %}" class="hover:font-semibold hover:text-blue-400"><i data-lucide="arrow-left" class="inline-block mr-2 h-6 w-6 mt-[-2px] text-blue-500"></i>Back to Articles</a>

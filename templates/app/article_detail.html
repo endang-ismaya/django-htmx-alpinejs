@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
+{% load markdown_extras %}
+
+{% block title %}
+  - {{ article.title }}
+{% endblock %}
+
 {% block base_content %}
   <h1>{{ article.title }}</h1>
-  <p>{{ article.content|safe|linebreaks }}</p>
+  <p>{{ article.content|markdownify }}</p>
+
+  <div class="mt-10">
+    <a href="{% url 'app.update_article' article.id %}" class="button primary">Update Article</a>
+  </div>
 {% endblock %}

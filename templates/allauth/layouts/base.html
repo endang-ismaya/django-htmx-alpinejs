@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block base_content %}
+  <main class="max-w-xl mx-auto">
+    <div class="text-center bg-gray-800 text-white rounded-lg p-6 lg:p-16 mt-10">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+  </main>
+{% endblock %}
