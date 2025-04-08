@@ -47,8 +47,13 @@ textarea:focus {
   @apply w-full rounded-md p-2;
 }
 
-.error-form {
+.error-form,
+.destructive {
   @apply p-2 mt-10 text-sm text-red-700 bg-red-50 rounded-md border-red-300 border;
+}
+
+.success {
+  @apply p-2 mt-10 text-sm text-green-700 bg-green-50 rounded-md border-green-300 border;
 }
 
 .details-with-icon[open] .icon-rotate {

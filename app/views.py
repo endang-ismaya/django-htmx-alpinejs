@@ -1,4 +1,6 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView,
@@ -45,11 +47,19 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user == self.get_object().creator
 
 
-class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class ArticleDeleteView(
+    LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView
+):
     template_name = "app/article_delete.html"
     model = Article
     success_url = reverse_lazy("app.home")
     context_object_name = "article"
+
+    def post(self, request, *args, **kwargs):
+        messages.success(
+            request, "Article deleted successfully", extra_tags="destructive"
+        )
+        return super().post(request, *args, **kwargs)
 
     def test_func(self):
         return self.request.user == self.get_object().creator
