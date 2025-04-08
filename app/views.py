@@ -17,17 +17,20 @@ class ArticleListView(LoginRequiredMixin, ListView):
     template_name = "app/home.html"
     model = Article
     context_object_name = "articles"
+    paginate_by = 3
 
     def get_queryset(self):
         """Get Article only by the creator"""
-        return Article.objects.filter(creator=self.request.user).order_by("-created_at")
+        queryset = super().get_queryset().filter(creator=self.request.user)
+        return queryset.order_by("-created_at")
 
 
-class ArticleCreateView(LoginRequiredMixin, CreateView):
+class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = "app/article_create.html"
     model = Article
     fields = ["title", "status", "content", "twitter_post"]
     success_url = reverse_lazy("app.home")
+    success_message = "Article created successfully"
 
     def form_valid(self, form):
         """Set/Insert creator during form_valid"""

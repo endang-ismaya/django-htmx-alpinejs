@@ -1,6 +1,6 @@
 # markdown_extras.py
 
-import markdown as md  # Import the Markdown library
+import markdown as md
 from django import template
 from django.utils.safestring import mark_safe  # Important for security/rendering HTML
 
