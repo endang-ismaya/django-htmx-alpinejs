@@ -11,12 +11,12 @@
       Are you sure you want to delete <span class="text-xl font-semibold text-red-800">"{{ article.title }}"</span> ?
     </p>
 
-    <div class="flex gap-6">
-      <form method="POST">
+    <div class="flex gap-6 items-center">
+      <form method="POST" action="{% url 'app.delete_article' article.id %}">
         {% csrf_token %}
         <button type="submit" class="button danger">Yes, Delete it!</button>
       </form>
-      <a href="{% url 'app.home' %}" class="button secondary leading-6"><i data-lucide="arrow-left" class="inline-block mr-2 h-6 w-6 mt-[-2px] text-blue-500"></i>No, I changed up my mind!</a>
+      <a href="{% url 'app.update_article' article.id %}" class="button secondary leading-6"><i data-lucide="arrow-left" class="inline-block mr-2 h-6 w-6 mt-[-2px] text-blue-500"></i>No, I changed up my mind!</a>
     </div>
   </main>
 {% endblock %}

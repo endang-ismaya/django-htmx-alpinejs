@@ -16,8 +16,31 @@
     <a href="{% url 'app.home' %}" class="hover:font-semibold hover:text-blue-400"><i data-lucide="arrow-left" class="inline-block mr-2 h-6 w-6 mt-[-2px] text-blue-500"></i>Back to Articles</a>
 
     <div class="flex gap-6">
-      <a href="{% url 'app.delete_article' article.id %}" class="button danger">Delete article</a>
+      <a hx-get="{% url 'app.delete_article' article.id %}" class="button danger" hx-target="#dialog" hx-select="main">Delete article</a>
       <button type="submit" class="button primary">Save</button>
     </div>
   </div>
+{% endblock %}
+
+{% block extra_body %}
+  <div id="modal" class="relative z-10 hidden">
+    <div class="bg-black/25 fixed top-0 left-0 right-0 bottom-0"></div>
+    <div class="fixed inset-0 z-10 w-screen p-4">
+      <div id="dialog" class="max-w-2xl mx-auto bg-white p-16 rounded-md shadow-lg"></div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_js %}
+  {{ block.super }}
+
+  <script>
+    const modal = document.getElementById('modal')
+    
+    htmx.on('htmx:afterSwap', function (e) {
+      if (e.detail.target.id == 'dialog') {
+        modal.classList.toggle('hidden')
+      }
+    })
+  </script>
 {% endblock %}
