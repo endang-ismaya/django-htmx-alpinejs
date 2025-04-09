@@ -21,7 +21,13 @@ class ArticleListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         """Get Article only by the creator"""
+        search = self.request.GET.get("search")
         queryset = super().get_queryset().filter(creator=self.request.user)
+        print("search", search)
+
+        if search:
+            queryset = queryset.filter(title__search=search)
+
         return queryset.order_by("-created_at")
 
 
