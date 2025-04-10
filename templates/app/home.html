@@ -1,25 +1,52 @@
-{% extends 'base.html' %} {% load humanize %} {% block title %}
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
   - Your Articles
-{% endblock %} {% block base_content %}
-  {% with search=request.GET.search %}
-    <main class="max-w-7xl px-4 sm:px-6 lg:px-8 mt-10 p-2 md:p-4 lg:p-6">
-      <h1 class="title mb-4">Welcome</h1>
+{% endblock %}
 
-      <p class="text-xl mb-4">You have created {{ user.article_count|intcomma }} article{{ user.article.count|pluralize }} and written {{ user.written_words|intcomma }} word{{ user.written_words|pluralize }}</p>
+{% block base_content %}
+  <main class="max-w-7xl px-4 sm:px-6 lg:px-8 mt-10 p-2 md:p-4 lg:p-6">
+    <h1 class="title mb-4">Welcome</h1>
 
-      <a href="{% url 'app.create_article' %}" class="button primary w-full sm:w-auto text-center inline-block mb-6">Start New Article</a>
+    <p class="text-xl mb-4">You have created {{ user.article_count|intcomma }} article{{ user.article.count|pluralize }} and written {{ user.written_words|intcomma }} word{{ user.written_words|pluralize }}</p>
 
-      <h2 class="subtitle mb-6">Your latest article</h2>
+    <a href="{% url 'app.create_article' %}" class="button primary w-full sm:w-auto text-center inline-block mb-6">Start New Article</a>
 
-      <!-- Search Form -->
-      <form method="get" class="flex flex-col sm:flex-row gap-3">
-        <input type="search" name="search" placeholder="Search Articles" value="{{ search }}" class="text-black shadow-sm focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm border-gray-300 rounded-md" />
-        <button type="submit" class="flex button secondary items-center justify-center"><i data-lucide="search" class="inline-block mr-2 h-6 w-6 mt-[-2px] text-blue-500"></i>Search</button>
-        <a href="{% url 'app.home' %}" class="button secondary text-center"><i data-lucide="search-x" class="inline-block mr-2 h-6 w-6 mt-[-2px] text-red-500"></i>Clear Search</a>
-      </form>
+    <h2 class="subtitle mb-6">Your latest article</h2>
 
-      <hr class="my-10 text-gray-300 shadow-amber-200" id="target-element" />
+    <!-- Search Form -->
+    <form method="get" class="flex flex-col sm:flex-row gap-3">
+      {# prettier-ignore-start #}
+        <input 
+          class="text-black shadow-sm focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm border-gray-300 rounded-md" 
+          type="search" 
+          name="search" 
+          placeholder="Search Articles" 
+          value="{{ request.GET.search }}" 
+          hx-get="{{ request.path }}" 
+          hx-trigger="input changed delay:500ms, search" 
+          hx-target="#article-results" 
+          hx-select="#article-results" 
+          hx-indicator="svg.loading" 
+          hx-disabled-elt="next button"
+          hx-on::after-request="this.classList.remove('htmx-request')"
+        />
+        {# prettier-ignore-end #}
+      <button type="submit" class="flex gap-1 button secondary items-center justify-center disabled:cursor-not-allowed disabled:opacity-50 [&>.loading.htmx-request]:hidden">
+        <i data-lucide="search" class="loading mr-2 h-6 w-6 mt-[-2px] text-blue-500"></i>
+        <!-- <i data-lucide="loader-circle" class="loading mr-2 h-6 w-6 mt-[-2px] text-blue-500 hidden animate-spin htmx-request:!inline-block"></i> -->
+        Search
+      </button>
+      <a href="{{ request.path }}" class="button secondary text-center">
+        <i data-lucide="search-x" class="inline-block mr-2 h-6 w-6 mt-[-2px] text-red-500"></i>
+        Clear Search
+      </a>
+    </form>
 
+    <hr class="my-10 text-gray-300 shadow-amber-200" id="target-element" />
+
+    <div id="article-results">
       <ul class="space-y-4">
         {% if articles %}
           {% for article in articles %}
@@ -49,8 +76,12 @@
           <p>You have no articles yet.</p>
         {% endif %}
       </ul>
-    </main>
-  {% endwith %}
+
+      <script>
+        lucide.createIcons()
+      </script>
+    </div>
+  </main>
   <!-- endblock -->
 {% endblock %}
 

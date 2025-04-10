@@ -1,3 +1,5 @@
+import time
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -21,6 +23,7 @@ class ArticleListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         """Get Article only by the creator"""
+        time.sleep(1)
         search = self.request.GET.get("search")
         queryset = super().get_queryset().filter(creator=self.request.user)
         print("search", search)
