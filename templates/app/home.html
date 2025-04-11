@@ -31,6 +31,7 @@
           hx-indicator="svg.loading" 
           hx-disabled-elt="next button"
           hx-on::after-request="this.classList.remove('htmx-request')"
+          hx-push-url="true"
         />
         {# prettier-ignore-end #}
       <button type="submit" class="flex gap-1 button secondary items-center justify-center disabled:cursor-not-allowed disabled:opacity-50 [&>.loading.htmx-request]:hidden">
