@@ -7,16 +7,10 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-6oq2v#)_f#1&7xv$vy!cwd$r--qojvkc1nu96*cb!$3wckk$md"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = config("DEBUG", default=False, cast=bool)
+SECRET_KEY = config("SECRET_KEY")
 ALLOWED_HOSTS = []
+ADMIN_URL = config("ADMIN_URL")
 
 
 # Application definition
@@ -39,7 +33,6 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.github",
-    "django_browser_reload",
     "widget_tweaks",
 ]
 
@@ -52,8 +45,17 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
+
+## --------
+## PROD
+## --------
+if DEBUG:
+    ADMIN_URL = "admin/"
+    INSTALLED_APPS += ["django_browser_reload"]
+    MIDDLEWARE += ["django_browser_reload.middleware.BrowserReloadMiddleware"]
+    ALLOWED_HOSTS = ["*"]
+
 
 ROOT_URLCONF = "src.urls"
 
