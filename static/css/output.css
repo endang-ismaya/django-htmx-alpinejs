@@ -736,11 +736,6 @@
       opacity: 50%;
     }
   }
-  .motion-safe\:animate-spin {
-    @media (prefers-reduced-motion: no-preference) {
-      animation: var(--animate-spin);
-    }
-  }
   .sm\:w-auto {
     @media (width >= 40rem) {
       width: auto;
@@ -834,16 +829,6 @@
   .\[\&\>\.loading\.htmx-request\]\:hidden {
     &>.loading.htmx-request {
       display: none;
-    }
-  }
-  .\[\&\>\.loading\.htmx-request\.hidden\]\:\!inline-block {
-    &>.loading.htmx-request.hidden {
-      display: inline-block !important;
-    }
-  }
-  .\[\&\>\.loading\.htmx-request\.hidden\]\:inline-block {
-    &>.loading.htmx-request.hidden {
-      display: inline-block;
     }
   }
   .\[\&\>ul\]\:space-y-1 {

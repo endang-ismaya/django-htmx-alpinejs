@@ -4,3 +4,5 @@ psycopg
 dj-database-url
 django-widget-tweaks
 Markdown
+python-decouple
+django-anymail

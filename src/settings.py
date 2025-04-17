@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,6 +34,7 @@ INSTALLED_APPS = [
     "app.apps.AppConfig",
     # 3rd party apps
     "allauth",
+    "anymail",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
@@ -154,5 +156,13 @@ ACCOUNT_SIGNUP_FIELDS = [
     "password2*",
 ]
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_VERIFICATION = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+
+# EMAIL SETUP
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
+ANYMAIL = {
+    "POSTMARK_SERVER_TOKEN": config("POSTMARK_API_KEY"),
+}
+EMAIL_BACKEND = "anymail.backends.postmark.EmailBackend"
